@@ -18,9 +18,12 @@ class App extends Component {
     const {searchInput} = this.state
     const addItems = {
       id: uuidv4(),
-      searchItem: searchInput,
+      item: searchInput,
     }
-    this.setState(prevState => ({wordList: [...prevState.wordList, addItems]}))
+    this.setState(prevState => ({
+      wordList: [...prevState.wordList, addItems],
+      searchInput: '',
+    }))
   }
 
   render() {
@@ -36,7 +39,7 @@ class App extends Component {
                 {wordList.map(each => (
                   <li key={each.id}>
                     <p key={each.id} className="list-item">
-                      {each.item}:{each.item.length}
+                      {each.item}: {each.item.length}
                     </p>
                   </li>
                 ))}
@@ -53,13 +56,13 @@ class App extends Component {
 
         <div className="container2">
           <h1 className="heading">Character Counter</h1>
-          <div>
+          <div className="kr">
             <form onSubmit={this.onAddItems}>
               <div className="input-container">
                 <input
                   type="text"
                   className="input"
-                  placeholder="Enter the Characters here"
+                  placeholder="Enter the characters here"
                   value={searchInput}
                   onChange={this.onChangeSearchInput}
                 />
